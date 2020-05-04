@@ -46,17 +46,21 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu">                               
+                                <li>                                    
+                                    <a href="{{ url('/home') }}">Dashboard</a>    
+                                </li>
                                 <li>
                                     <a href="{{url('/')}}">Pagina principal</a>
-                                    <a href="{{ url('/home') }}">Dashboard</a>                            
                                 </li>
                                 @if(auth()->user()->admin)
                                 <li>
-                                    <a href="{{url('admin/products')}}">Gestionar productos</a>     
+                                    <a href="{{url('admin/products')}}">Gestionar productos</a>         
                                 </li>
-                                @endif
-
+                                <li>
+                                    <a href="{{url('admin/categories')}}">Gestionar categorias</a>
+                                </li>
+                                @endif                                
                                 <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

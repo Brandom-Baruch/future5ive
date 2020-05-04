@@ -25,7 +25,7 @@
 @endsection
 
 @section('content')
-<div class="header header-filter" style="background-image: url('{{asset('img/arbol.jpg')}}');">
+  <div class="header header-filter" style="background-image: url('{{asset('img/arbol.jpg')}}');">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -89,7 +89,7 @@
                                 <div class="team-player">
                                     <img src="{{$product->feature}}" alt="Thumbnail Image" class="img-raised img-rect" width="250">
                                     <h4 class="title"><a href="{{ url('/products/'.$product->id) }}" style="color:black;">{{$product->name}}</a><br/>
-                                        <small class="text-muted" style="color:black;">{{$product->category->name}}</small>
+                                        <small class="text-muted" style="color:black;">{{$product->category_name}}</small>
                                     </h4>
                                     <p class="description" style="color:black;">Precio: $ {{$product->price}}</p> 
                                     <p class="description" style="color:black;">{{$product->description}}</p>                              
@@ -104,5 +104,5 @@
                 </div>              
             </div>
         </div>       
-@include('includes.footer')
+ @include('includes.footer')
 @endsection

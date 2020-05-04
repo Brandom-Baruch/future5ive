@@ -64,7 +64,22 @@
                             <label class="control-label">Descripción corta</label>
                             <input type="text" class="form-control" name="description" value="{{$product->description}}" style="color:black;">
                         </div>
-                    </div>                                                                    
+                    </div>
+
+                     <div class="col-sm-5">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Categoría del producto</label>
+                            <select class="form-control" name="category_id">
+                                <option value="0">Otros</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}" @if($category->id == old('category_id', $product->category_id)) selected @endif>
+                                {{$category->name}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                 </div>                                                
                 <textarea class="form-control" placeholder="Descripción extensa del producto" rows="1" name="long_description" style="color:black;">{{$product->long_description}}</textarea>
                 

@@ -35,4 +35,15 @@ class Product extends Model
     	//devolver una imagen por defecto
     	 return '/images/products/defecto.jpg';
     }
+
+    public function getCategoryNameAttribute()
+    {
+            //Si existe la categoria del producto
+        if($this->category)
+            //Devolvemos la categoria del producto
+            return $this->category->name;
+
+        //Sino no existe la categoria, colocamos "Sin categoria"
+        return 'Otros';
+    }
 }
