@@ -21,6 +21,22 @@ Route::get('/','IndexController@index');
 Auth::routes(); //ruta de autenticacion
 Route::get('/home', 'HomeController@index')->name('home'); //Ruta para login
 
+//Buscar un producto especifico
+Route::get('/search','SearchController@show');
+Route::get('/products/json','SearchController@data');
+//Mostrar categoria del producto seleccionado
+Route::get('/categories/{category}','CategoryController@show');
+
+//Mostrar la informacion del producto seleccionado
+Route::get('/products/{id}','ProductController@show');
+//Agregar producto al carrito
+Route::post('/cart','CartDetailController@store');
+//Eliminar producto del carrito
+Route::delete('/cart','CartDetailController@destroy');
+//Realizar pedido del carrito de compras
+Route::post('/order','CartController@update');
+
+
 
 ///Administrador			
 Route::middleware(['auth','admin'])->group(function () {	
@@ -50,17 +66,7 @@ Route::post('/admin/categories/{id}/delete','Admin\CategoryController@destroy');
 
 });
 
-//Mostrar categoria del producto seleccionado
-Route::get('/products/{id}','CategoryController@show');
 
-//Mostrar la informacion del producto seleccionado
-Route::get('/products/{id}','ProductController@show');
-//Agregar producto al carrito
-Route::post('/cart','CartDetailController@store');
-//Eliminar producto del carrito
-Route::delete('/cart','CartDetailController@destroy');
-//Realizar pedido del carrito de compras
-Route::post('/order','CartController@update');
 
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Mostrar categoría')
+@section('title','Busqueda del product')
 
 @section('body-class','profile-page')
 
@@ -32,13 +32,13 @@
                 <div>
                 	<div class="profile">
 	                    <div class="avatar">
-	                        <img src="{{$category->feature}}" alt="Imagen de la categoria {{$category->name}}" class="img-rect img-responsive img-raised ">
+	                        <img src="{{asset('/img/search.png')}}" alt="Imagen de una lupa representando la busqueda" class="img-circle img-responsive img-raised ">
 	                    </div>
 	                    <div class="name">
-	                      <h3 class="title" style="color:black;">{{$category->name}}</h3>  
+	                      <h3 class="title" style="color:black;">Resultado de la búsqueda</h3>  
 	                  	</div>
 	                    <div class="description text-center" style="color:black;">
-			                <p>{{ $category->description }}</p>
+			                <p style="color:black;">Se encontraron {{ $products->count() }} resultados para el término {{ $searches }}</p>
 			            </div>
 	                </div>	     
                 </div>       	            	            	                         					

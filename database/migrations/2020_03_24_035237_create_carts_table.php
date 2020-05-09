@@ -21,7 +21,7 @@ class CreateCartsTable extends Migration
            // $table->string('payment-type')->nullable(); //tipo de pago
             $table->string('status'); //Activo, Pendiente, Aprovado, Cancelado, Terminado 
             $table->integer('discount')->default(0); //Descuento
-            $table->date('order-date')->nullable(); //fecha de orden
+            $table->date('order_date')->nullable(); //fecha de orden
             $table->date('arrived-date')->nullable(); //fecha de entrega
             $table->timestamps();
         });

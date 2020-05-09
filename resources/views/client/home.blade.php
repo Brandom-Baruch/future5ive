@@ -2,9 +2,8 @@
 @section('title','Dashboard')
 @section('body-class','product-page')
 @section('content')
-@php
-    $total = 0;    
-@endphp
+
+
 
 <div class="header header-filter" style="background-image: url('{{asset('img/arbol-rosa.jpg')}}');">   
 </div>
@@ -81,14 +80,11 @@
 
                             </form>
                         </td>
-                    </tr>
-                    @php
-                    $total+=$detail->quantity * $detail->product->price                                    
-                    @endphp
+                    </tr>                  
                     @endforeach                            
                 </tbody>                        
             </table>
-            <p>Total a pagar {{$total}}</p>
+            <p> <strong>Total a pagar: </strong>{{auth()->user()->cart->total}}</p>
 
            <br>
 

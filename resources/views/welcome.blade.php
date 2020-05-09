@@ -8,19 +8,47 @@
     <style>
         .team .row .col-md-4 {
             margin-bottom: 5em;
-        }
-        .row {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display:         flex;
-          flex-wrap: wrap;
-        }
-        .row > [class*='col-'] {
-          display: flex;
-          flex-direction: column;
+        }      
+        .tt-query {
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+             -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+                  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
         }
 
+        .tt-hint {  
+          color: #999
+        }
+
+        .tt-menu {    /* used to be tt-dropdown-menu in older versions */
+          width: 222px;
+          margin-top: 4px;
+          padding: 4px 0;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          -webkit-border-radius: 4px;
+             -moz-border-radius: 4px;
+                  border-radius: 4px;
+          -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+             -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+                  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        }
+
+        .tt-suggestion {
+          padding: 3px 20px;
+          line-height: 24px;
+        }
+
+        .tt-suggestion.tt-cursor,.tt-suggestion:hover {
+          color: #fff;
+          background-color: #0097cf;
+          cursor: pointer;  
+
+        }
+
+        .tt-suggestion p {
+          margin: 0;
+        }
     </style>
 @endsection
 
@@ -34,7 +62,7 @@
                         <br />                       
                     </div>
                 </div>
-            </div>
+            </div>  
         </div>
         <div class="main main-raised">
             <div class="container">
@@ -80,29 +108,57 @@
                 </div>
 
                 <div class="section text-center">
-                    <h2 class="title" style="color:black;">Productos disponibles</h2>
+                    <h2 class="title" style="color:black;">Visita nuestras categorías</h2>
+
+                    <form class="form-inline" method="get" action="{{ url('/search') }}">
+                        <input type="text"  placeholder="¿Qué producto buscas?" class="form-control text-center" name="searches" id="search">
+                        <button class="btn btn-primary btn-just-icon" type="submit">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </form>
 
                     <div class="team">
                         <div class="row">
-                            @foreach($products as $product)
+                            @foreach($categories as $category)
                             <div class="col-md-4">                                
                                 <div class="team-player">
-                                    <img src="{{$product->feature}}" alt="Thumbnail Image" class="img-raised img-rect" width="250">
-                                    <h4 class="title"><a href="{{ url('/products/'.$product->id) }}" style="color:black;">{{$product->name}}</a><br/>
-                                        <small class="text-muted" style="color:black;">{{$product->category_name}}</small>
+                                    <img src="{{$category->feature}}" alt="Imagen representativa de la categoria {{$category->name}}" class="img-raised img-rect" width="250">
+                                    <h4 class="title"><a href="{{ url('/categories/'.$category->id) }}" style="color:black;">{{$category->name}}</a><br/>                    
                                     </h4>
-                                    <p class="description" style="color:black;">Precio: $ {{$product->price}}</p> 
-                                    <p class="description" style="color:black;">{{$product->description}}</p>                              
+                                    <p class="description" style="color:black;">{{$category->description}}</p>                              
                                 </div>                                
                             </div>    
                             @endforeach                       
-                        </div>
-                        <div class="text-center">
-                            {{ $products->links() }}
-                        </div>
+                        </div>                        
                     </div>
                 </div>              
             </div>
         </div>       
  @include('includes.footer')
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
+    <script>
+        $(function (){
+            //Inicilizar variable products
+            var products = new Bloodhound({
+              datumTokenizer: Bloodhound.tokenizers.whitespace,
+              queryTokenizer: Bloodhound.tokenizers.whitespace,              
+              prefetch: '{{ url("products/json") }}'
+            });
+
+            //Inicilizar typeahead sobre nuestro input de busqueda
+            $('#search').typeahead({
+                //Pasamos el objeto de las propiedades
+                  hint: true,
+                  highlight: true,
+                  minLength: 1
+            }, {
+                //Pasamos el objeto de datasend
+                  name: 'products',
+                  source: products
+            });
+        });
+    </script>
 @endsection

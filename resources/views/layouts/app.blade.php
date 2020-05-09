@@ -35,6 +35,7 @@
                 <a class="navbar-brand" href="{{url('/')}}">ACF Tecnhologies Inc.</a>
             </div>
 
+            <!---->
             <div class="collapse navbar-collapse" id="navigation-example">
                 <ul class="nav navbar-nav navbar-right">
                     @guest
@@ -76,6 +77,9 @@
                     @endguest                
                 </ul>
             </div>
+
+
+
         </div>
     </nav>
 
@@ -98,5 +102,6 @@
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="{{asset('js/material-kit.js')}}" type="text/javascript"></script>    
+    @yield('scripts')
 
 </html>
