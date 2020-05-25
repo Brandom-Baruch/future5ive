@@ -10,7 +10,7 @@
 <div class="main main-raised">
     <div class="container">             
         <div class="section">
-            <h2 class="title text-center" style="color:black;">Dashboard</h2>            
+            <h2 class="title text-center" style="color:black;">Panel de compras</h2>            
            
             @if (session('notification'))              
                 <div class="alert alert-success">

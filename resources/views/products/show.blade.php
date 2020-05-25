@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Mostrar producto')
+@section('title','Mostrar producto ' . $products->name)
 
 @section('body-class','profile-page')
 

@@ -37,15 +37,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectPath()
+    /*public function redirectPath()
     {
 
-        if(auth()->user()->admin){
+        if(Auth::user()->role=='admin'){
 
-            return '/admin/products';
+            return '/admin/home';
         }
 
         return '/home';
      }
-
+    */
 }

@@ -24,8 +24,8 @@ class SearchController extends Controller
     }
 
     public function data ()
-    {
-    	$products =  Product::pluck('name');
+    {                                       //pluck solamente extrae el valor indicado
+    	$products =  Product::pluck('name'); //en este caso solamente es name
     	return $products;
     }
 }

@@ -9,6 +9,12 @@ use App\Category;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+
     public function index()
     {
     	$products=Product::paginate(10);
@@ -49,7 +55,7 @@ class ProductController extends Controller
         $this->validate($request,$rules,$messages);
 
 
-
+        
         //registrar nuevo producto
         //dd($request->all()); //devuelve todos los datos que se agrego en el formulario
 
@@ -112,14 +118,16 @@ class ProductController extends Controller
         $product->long_description = $request->input('long_description');
         $product->category_id = $request->input('category_id');
         $product->save(); //update
-        return redirect('/admin/products');
+        $notification = 'Se ha actualizado  el producto '. $product->name;
+        return redirect('/admin/products')->with(compact('notification'));
     }
 
     public function destroy ($id){
 
         $product= Product::find($id);
         $product->delete(); //eliminar
-        return back(); //redirige a la misma pagina
+        $notification = 'Se ha eliminado el producto '.$product->name;
+        return back()->with(compact('notification')); //redirige a la misma pagina
     }
 
 }

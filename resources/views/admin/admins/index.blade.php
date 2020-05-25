@@ -1,15 +1,14 @@
 @extends('layouts.admin')
-@section('title','Listado de categorías')
+@section('title','Listado de Administradores')
 @section('body-class','product-page')
 
 @section('content')
-<div class="header header-filter" style="background-image: url('{{asset('img/arbol.jpg')}}');">            
-</div>
+<div class="header header-filter" style="background-image: url('{{asset('img/arbol.jpg')}}');"></div>
 <div class="main main-raised">
     <div class="container">      
         <div class="section text-center">
-            <h2 class="title" style="color:black;">Listado de categorías</h2>                                
-                <a href="{{url('/admin/categories/create')}}" class="btn btn-primary btn-rect">
+            <h2 class="title" style="color:black;">Listado de administradores</h2>                                
+                <a href="{{url('/admin/admins/create')}}" class="btn btn-primary btn-rect">
                   Agregar nueva Categoría <i class="material-icons">add_circle</i>
                 </a >
 
@@ -25,30 +24,33 @@
                       {{ session('notification') }}
                     </div>
                 </div>
-            @endif   
+            @endif
+
             <div class="team">                
                 <div class="row">                      
-                    <table class="table">
+                    <table class="table"> 
                         <thead>
                             <tr>
                                 <th class="text-center">#</th>
-                                <th class="col-md-3 text-center">Categoria</th>
-                                <th class="col-md-5 text-center">Descripcion</th>
-                                <th>Imagen</th>            
-                                <th class="col-md-3 text-center">Opciones</th>
+                                <th class="col-md-2 text-center">Nombre del administrador</th>
+                                <th class="col-md-2 text-center">Correo</th>
+                                <th class="col-md-2 text-center">Telefono</th>
+                                <th class="text-center">Fotografía</th>            
+                                <th class="col-md-2 text-center">Opciones</th>
                             </tr>
                         </thead>                        
                         <tbody>
-                            @foreach( $categories as $key => $category)
+                            @foreach($admins as $admin)                            
                             <tr style="color:black;  border-color:black;">
-                                <td class="text-center">{{ ($key+1) }}</td>
-                                <td>{{$category->name}}</td>
-                                <td class="text-left">{{$category->description}}</td>
-                                <td><img src="{{ $category->feature }}" height="50"></td>           
+                                <td class="text-center">{{$admin->id}}</td>                         
+                                <td class="text-center">{{ $admin->name }}</td>
+                                <td class="text-center">{{ $admin->email }}</td>
+                                <td>{{$admin->phone}}</td>
+                                <td><img src="{{$admin->image_admin}}" height="100"></td>      
                                 <td class="td-actions text-center">
-                                    <form method="post" action="{{url('admin/categories/'.$category->id.'/delete')}}">
+                                    <form method="post" action="">
                                         {{ csrf_field() }}                 
-                                        <a href="{{url('admin/categories/'.$category->id.'/edit')}}" rel="tooltip" title="Editar categoría" class="btn btn-success btn-simple btn-xs">
+                                        <a href="{{url('admin/admins/'.$admin->id.'/edit')}}" rel="tooltip" title="Editar categoría" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
                                         </a>                                       
                                         <button type="submit" rel="tooltip" title="Eliminar categoría" class="btn btn-danger btn-simple btn-xs">
@@ -57,12 +59,11 @@
                                     </form>
                                 </td>
                             </tr>
-                            @endforeach                            
+                            @endforeach                                                       
                         </tbody>                        
                     </table>                                                         
                 </div>
-            </div>
-             {{$categories-> links()}}   
+            </div>               
         </div>              
     </div>
 </div>

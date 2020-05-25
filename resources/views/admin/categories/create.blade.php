@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title','Ingresar producto')
+@extends('layouts.admin')
+@section('title','Ingresar nueva categoría')
 @section('body-class','product-page')
 @section('content')
 
@@ -25,24 +25,24 @@
                 </div>
             @endif
             
-             <form method="post" action="/admin/categories">
+             <form method="post" action="/admin/categories" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="row">            
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group label-floating">
                             <label class="control-label">Nombre de la categoría</label>
                             <input type="text" class="form-control" name="name" style="color:black;" value="{{old('name')}}">
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Descripción de la categoría</label>
-                            <input type="text" class="form-control" name="description" style="color:black;" value="{{old('description')}}">
-                        </div>
-                    </div>
+                    <div class="col-sm-6">                        
+                        <label class="control-label">Imagen de la categoría</label>
+                        <input type="file" name="image" required>                        
+                    </div>                    
                 </div>
+
+                <textarea class="form-control" placeholder="Descripción de la categoria" rows="1" name="description" style="color:black;">{{old('description')}}</textarea>
 
                 <button class="btn btn-success">Registrar categoría</button>
                 <a href="{{url('/admin/categories')}}" class="btn btn-danger">Cancelar</a>

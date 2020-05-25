@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title','Editar producto')
+@extends('layouts.admin')
+@section('title','Editar categoría ' . $category->name)
 @section('body-class','product-page')
 @section('content')
 
@@ -34,24 +34,29 @@
                 </div>
             @endif
             
-             <form method="post" action="{{url('/admin/categories/'.$category->id.'/edit')}}">
+             <form method="post" action="{{url('/admin/categories/'.$category->id.'/edit')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="row">            
                     <div class="col-sm-4">
                         <div class="form-group label-floating">
                             <label class="control-label">Nombre de la categoria </label>
-                            <input type="text" class="form-control" name="name" value="{{old('name',$category->name)}}" style="color:black;">
+                            <input type="text" class="form-control" name="name" value="{{old('name',$category->name)}}">
                         </div>
                     </div>
                                           
-                    <div class="col-sm-5">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Descripción de la categoría</label>
-                            <input type="text" class="form-control" name="description" value="{{$category->description}}" style="color:black;">
-                        </div>
+                    <div class="col-sm-6">                        
+                        <label class="control-label">Imagen de la categoría</label>
+                        <input type="file" name="image">
+                        @if($category->image)
+                        <p>
+                          Subir solo si desea reemplazar la <a href="{{ asset('/images/categories/'.$category->image) }}" target="_blank">imagen actual</a>
+                        </p>
+                        @endif                        
                     </div>                                                                    
-                </div>                        
+                </div>
+
+                <textarea class="form-control" placeholder="Descripción de la categoria" rows="1" name="description" style="color:black;">{{$category->description}}</textarea>                        
                 <button class="btn btn-success">Guardar cambios</button>
                 <a href="{{url('admin/categories')}}" class="btn btn-danger">Cancelar</a>
 

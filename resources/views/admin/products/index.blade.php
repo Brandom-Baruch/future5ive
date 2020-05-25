@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('title','Listado de productos')
 @section('body-class','product-page')
 
@@ -12,6 +12,21 @@
                 <a href="{{url('/admin/products/create')}}" class="btn btn-primary btn-rect">
                   Agregar nuevo producto <i class="material-icons">add_circle</i>
                 </a >
+
+            @if (session('notification'))              
+                <div class="alert alert-success text-left">
+                    <div class="container-fluid">
+                      <div class="alert-icon">
+                        <i class="material-icons">check</i>
+                      </div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                      </button>
+                      {{ session('notification') }}
+                    </div>
+                </div>
+            @endif      
+
             <div class="team">                
                 <div class="row">                      
                     <table class="table">

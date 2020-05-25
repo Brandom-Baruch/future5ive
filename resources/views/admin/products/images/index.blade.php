@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title','Imágenes de productos')
+@extends('layouts.admin')
+@section('title','Subir imagen')
 @section('body-class','product-page')
 @section('content')
 <div class="header header-filter" style="background-image: url('{{asset('img/arbol.jpg')}}');"> 

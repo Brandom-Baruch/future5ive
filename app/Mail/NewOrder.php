@@ -7,23 +7,26 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-use App\Cart;
-use App\User;
+use App\Cart; 
+use App\User; 
 
 class NewOrder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $cart;
+    public $user; //Atributo user
+    public $cart; //Atributo cart
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user , Cart $cart)
+    public function __construct(User $user , Cart $cart) //Como parametro tiene las dos instancias
     {
-        $this->user = $user;
+        //Tomamos los valores que nos envia el constructor para guardarlos en los atributos publicos
+        //Para que esten disponibles en la vista que se creo 
+        $this->user = $user; 
         $this->cart = $cart;
     }
 

@@ -1,14 +1,8 @@
-@extends('layouts.app')
-@section('title','Editar producto')
+@extends('layouts.admin')
+@section('title','Editar producto ' . $product->name)
 @section('body-class','product-page')
 @section('content')
 
-@section('style')
-    
-    <style>        
-    </style>
-
-@endsection
 
 <div class="header header-filter" style="background-image: url('{{asset('img/arbol.jpg')}}');">   
 </div>
@@ -17,7 +11,7 @@
 
         <div class="section">
 
-            <h2 class="title text-center" style="color:black;">Editar producto seleccionado</h2>
+            <h2 class="title text-center" style="color:black;">Editar producto "{{$product->name}}"</h2>
 
             @if($errors->any())
                 <div class="alert alert-danger">
@@ -44,29 +38,25 @@
                             <input type="text" class="form-control" name="name" value="{{old('name',$product->name)}}" style="color:black;">
                         </div>
                     </div>
-
                     <div class="col-sm-4">
                         <div class="form-group label-floating">
                             <label class="control-label">Precio del producto</label>
-                            <input type="number" class="form-control" name="price" value="{{$product->price}}"style="color:black;">
+                            <input type="number" class="form-control" name="price" value="{{old('price',$product->price)}}"style="color:black;">
                         </div>
-                    </div>
-                    
+                    </div>                    
                     <div class="col-sm-4">
                         <div class="form-group label-floating">
                             <label class="control-label">Cantidad del producto</label>
-                            <input type="number" class="form-control" name="stock" value="{{$product->stock}}"style="color:black;">
+                            <input type="number" class="form-control" name="stock" value="{{old('stock',$product->stock)}}"style="color:black;">
                         </div>
                     </div>                       
-
                     <div class="col-sm-5">
                         <div class="form-group label-floating">
                             <label class="control-label">Descripción corta</label>
-                            <input type="text" class="form-control" name="description" value="{{$product->description}}" style="color:black;">
+                            <input type="text" class="form-control" name="description" value="{{old('description',$product->description)}}" style="color:black;">
                         </div>
                     </div>
-
-                     <div class="col-sm-5">
+                    <div class="col-sm-5">
                         <div class="form-group label-floating">
                             <label class="control-label">Categoría del producto</label>
                             <select class="form-control" name="category_id">
@@ -79,13 +69,10 @@
                             </select>
                         </div>
                     </div>
-
                 </div>                                                
-                <textarea class="form-control" placeholder="Descripción extensa del producto" rows="1" name="long_description" style="color:black;">{{$product->long_description}}</textarea>
-                
+                <textarea class="form-control" placeholder="Descripción extensa del producto" rows="1" name="long_description" style="color:black;">{{$product->long_description}}</textarea>                
                 <button class="btn btn-success">Guardar cambios</button>
                 <a href="{{url('admin/products')}}" class="btn btn-danger">Cancelar</a>
-
              </form>                  
         </div>              
     </div>

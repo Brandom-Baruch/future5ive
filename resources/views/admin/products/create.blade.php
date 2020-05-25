@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('title','Ingresar producto')
 @section('body-class','product-page')
 @section('content')
@@ -71,8 +71,10 @@
                     </div>
 
                 </div>                                                
-                <textarea class="form-control" placeholder="Descripción extensa del producto" rows="1" name="long_description" style="color:black;"> {{old('long_description')}}</textarea>
+               
                 
+                 <textarea class="form-control" placeholder="Descripción extensa del producto" rows="1" name="long_description" style="color:black;">{{old('long_description')}}</textarea>
+                 
                 <button class="btn btn-success">Registrar producto</button>
                 <a href="{{url('/admin/products')}}" class="btn btn-danger">Cancelar</a> 
 

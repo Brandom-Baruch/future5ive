@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Mostrar categoría')
+@section('title','Mostrar categoría ' . $category->name)
 
 @section('body-class','profile-page')
 

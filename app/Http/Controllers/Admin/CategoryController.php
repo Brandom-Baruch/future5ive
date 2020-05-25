@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use File; 
 
 class CategoryController extends Controller
 {
@@ -38,8 +39,22 @@ class CategoryController extends Controller
         $category = new Category();
 
         $category->name = $request->input('name');
-        $category->description = $request->input('description');
-        $category->save();
+        $category->description = $request->input('description');        
+
+        if($request->hasFile('image'))
+         {
+            $file = $request->file('image'); // obtiene el archivo que se esta subiendo 
+            $path = public_path(). '/images/categories'; //creamos una carpeta dentro del archivo public
+            $fileName = uniqid().'-'.$file->getClientOriginalName(); //Se coloca un nombre que no se repita
+            $moved=$file->move($path , $fileName); //guardamos el archivo
+
+      //crear 1 registro en la tabla  product_images
+            if($moved)
+            {              
+              $category->image = $fileName;                      
+              $category->save();//guardamos y procedera en hacer un INSERT
+            }
+         } 
 
         $notification = "Se ha agregado nueva categoria";
         return redirect('/admin/categories')->with(compact('notification'));
@@ -73,7 +88,26 @@ class CategoryController extends Controller
 
         $category->name = $request->input('name');
         $category->description = $request->input('description');
-        $category->save();
+        
+        if($request->hasFile('image'))
+         {
+            $file = $request->file('image'); // obtiene el archivo que se esta subiendo 
+            $path = public_path(). '/images/categories'; //creamos una carpeta dentro del archivo public
+            $fileName = uniqid().'-'.$file->getClientOriginalName(); //Se coloca un nombre que no se repita
+            $moved=$file->move($path , $fileName); //guardamos el archivo
+
+      
+            if($moved)
+            {              
+              $previousPath = $path . '/' .$category->image;
+
+              $category->image = $fileName;                                    
+              $saved = $category->save();//guardamos y procedera en hacer un update
+              if($saved)
+                File::delete($previousPath);
+              
+            }
+         } 
 
         $notification = "Se ha actualizado la categoria exitosamente";
         return redirect('admin/categories')->with(compact('notification'));

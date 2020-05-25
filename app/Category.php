@@ -13,8 +13,15 @@ class Category extends Model
     }
 
     public function getFeatureAttribute()
-    {
-        $featureProduct = $this->products()->first();
-        return $featureProduct->feature;
+    {	
+    	if($this->image)
+    		return '/images/categories/'.$this->image;
+    	else
+
+        $firstProduct = $this->products()->first();
+    	if($firstProduct)
+        	return $firstProduct->feature;
+
+        return 'images/defecto.jpg';
     }
 }

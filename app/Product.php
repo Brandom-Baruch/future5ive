@@ -33,7 +33,7 @@ class Product extends Model
     	}
 
     	//devolver una imagen por defecto
-    	 return '/images/products/defecto.jpg';
+    	 return '/images/defecto.jpg';
     }
 
     public function getCategoryNameAttribute()
