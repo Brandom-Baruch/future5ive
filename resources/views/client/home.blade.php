@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Dashboard')
+@section('title','Carrito de compras')
 @section('body-class','product-page')
 @section('content')
 
@@ -34,9 +34,9 @@
                     </a>
                 </li>              
                 <li>
-                    <a href="#tasks" role="tab" data-toggle="tab">
-                        <i class="material-icons">list</i>
-                        Pedidos realizados
+                    <a href="{{url('/user/'.auth()->user()->id.'/config')}}">
+                        <i class="material-icons">assignment_ind</i>
+                        Configurar Cuenta
                     </a>
                 </li>
             </ul>        

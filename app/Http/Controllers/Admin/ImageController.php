@@ -47,9 +47,7 @@ class ImageController extends Controller
           //$fullPath = public_path() . '/images/products/' . $productImage->image ; 
           $deleted = File::delete((public_path() . '/images/products/' . $productImage->image));
         }
-
         //eliminar el registro en la bd
-
         if ($deleted) {
             $productImage->delete();
         }

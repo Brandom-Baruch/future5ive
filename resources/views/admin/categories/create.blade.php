@@ -46,7 +46,6 @@
 
                 <button class="btn btn-success">Registrar categoría</button>
                 <a href="{{url('/admin/categories')}}" class="btn btn-danger">Cancelar</a>
-
              </form>                  
         </div>              
     </div>

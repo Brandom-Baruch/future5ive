@@ -40,6 +40,10 @@ Route::post('/cart','CartDetailController@store');
 Route::delete('/cart','CartDetailController@destroy');
 //Realizar pedido del carrito de compras
 Route::post('/order','CartController@update');
+//Configurar informacion del usuario
+Route::get('/user/{id}/config' , 'HomeController@edit');
+//Actualizar los datos del cliente
+Route::post('/user/{id}/config' , 'HomeController@update');
 
 
 

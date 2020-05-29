@@ -17,11 +17,21 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
     	//Colocar las reglas de validacion
-        $this->validate($request , [
-            'email' => 'required|email',
-            'password' => 'required|min:6',
+        
+        $rules = [
+           'email' => 'required|email',
+           'password' => 'required|min:6'
+        ];
 
-        ]);
+        $messages =[
+           'email.required' => 'El correo es un campo obligatorio',
+           'email.email' => 'El correo electronico esta mal escrito',
+           'email.email' => 'El correo electronico no se encuentra en la base de datos',
+           'password.required' => 'La contraseña es un campo obligatorio',
+           'password.min' => 'La contraseña debe tener por lo menos 6 caracteres',           
+        ];
+
+        $this->validate($request,$rules,$messages);
         //return true;
 
         //Pasamos los datos y probamos si puede iniciar sesion 

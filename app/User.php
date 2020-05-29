@@ -39,6 +39,7 @@ class User extends Authenticatable
     public function getCartAttribute()
     {
         $cart = $this->carts()->where('status','Active')->first();
+        
         if ($cart)
             return $cart;
 

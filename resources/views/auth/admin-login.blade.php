@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title','Iniciar Sesión')
+
 @section('body-class','signup-page')
 
 @section('content')
@@ -7,29 +9,44 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                <div class="card card-signup">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">                   
+                <div class="card card-signup">                  
 
                     <form class="form" method="POST" action="{{ route('admin.login.submit') }}">
                         {{ csrf_field() }}
                         <div  class="header header-primary text-center" style="opacity: 0.9">
                             <h4>Hola Administrador</h4>                            
                         </div>
+                                       
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <div class="container-fluid">                     
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                  </button>
+                                  <ul class="text-left">    
+                                      @foreach($errors->all() as $error)                        
+                                      <li>{{$error}}</li>
+                                      @endforeach
+                                  </ul>
+                                </div>
+                            </div>                        
+                        @endif
+
                         <p class="text-divider">Ingresa tus datos</p>
-                        <div class="content">
-                           
+                        <div class="content">                            
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="material-icons">email</i>
                                 </span>                            
-                                <input id="email" type="email" placeholder="Corre electrónico" class="form-control" name="email" value="{{ old('email') }}" required autofocus>     
+                                <input id="email" type="email" placeholder="Corre electrónico" class="form-control" name="email" value="{{ old('email') }}" autofocus>     
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="material-icons">lock_outline</i>
                                 </span>
-                                <input placeholder="Contraseña" id="password" type="password" class="form-control" name="password" required/>
+                                <input placeholder="Contraseña" id="password" type="password" class="form-control" name="password" />
                             </div>
      
                             <!-- If you want to add a checkbox to this form, uncomment this code-->

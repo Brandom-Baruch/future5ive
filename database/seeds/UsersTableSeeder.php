@@ -17,8 +17,8 @@ class UsersTableSeeder extends Seeder
 
             'name'=>'Eduardo Reyes',
             'email'=>'musemex27@gmail.com',
-            'password'=>bcrypt('123123'),
-            'admin'=>true
+            'password'=>bcrypt('123123')
+            //'admin'=>true
         ]);
 
          Admin::create([
@@ -33,8 +33,7 @@ class UsersTableSeeder extends Seeder
 
             'name'=>'Fernando',
             'email'=>'backfiregreen55@gmail.com',
-            'password'=>bcrypt('123123'),
-            'admin'=>false
+            'password'=>bcrypt('123123')            
         ]);
     }
 }

@@ -11,8 +11,7 @@ class CategoryController extends Controller
 {
    	public function index()
    	{
-   		$categories = Category::orderBy('id')->paginate(10);
-
+   		$categories = Category::orderBy('id')->paginate(3);
    		return view ('admin.categories.index')->with(compact('categories'));
    	}
 
@@ -23,6 +22,12 @@ class CategoryController extends Controller
 
    	public  function store (Request $request)
    	{
+        
+        $rules = [
+            'name' => 'required|min:3',
+            'description' =>'required|max:200'            
+        ];
+
          $messages =[
             'name.required' => 'Es necesario ingresar un nombre para la categoría',
             'name.min' =>'El nombre de la categoría debe tener al menos 3 caracteres',
@@ -30,10 +35,6 @@ class CategoryController extends Controller
             'descripcion.max'=> 'La descripció debe de tener un maximo de 200 caracteres',            
         ];
 
-        $rules = [
-            'name' => 'required|min:3',
-            'description' =>'required|max:200'            
-        ];
         $this->validate($request,$rules,$messages);
 
         $category = new Category();

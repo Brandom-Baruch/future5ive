@@ -47,23 +47,13 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>       
                             </a>
 
-                            <ul class="dropdown-menu">
-                                @if(auth()->user()->admin == false)                               
+                            <ul class="dropdown-menu">                               
                                 <li>                                    
                                     <a href="{{ url('/home') }}">Carrito de compras</a>    
-                                </li>
-                                @endif
+                                </li>                                
                                 <li>
                                     <a href="{{url('/')}}">Pagina principal</a>
-                                </li>
-                                @if(auth()->user()->admin)
-                                <li>
-                                    <a href="{{url('admin/products')}}">Gestionar productos</a>         
-                                </li>
-                                <li>
-                                    <a href="{{url('admin/categories')}}">Gestionar categorias</a>
-                                </li>
-                                @endif                                
+                                </li>                                                                                               
                                 <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -79,8 +69,6 @@
                     @endguest                
                 </ul>
             </div>
-
-
 
         </div>
     </nav>
